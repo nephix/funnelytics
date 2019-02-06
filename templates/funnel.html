@@ -1,0 +1,326 @@
+<ion-view view-title="Funnelytics">
+<div id="top_bar">
+  <div class="top_inner">
+    <div id="logo"><h1><a href="#" title="Funnelytics | Data Driven Growth"><img src="img/logo_full.png" alt=""/></a></h1></div>
+  </div>
+</div><!-- END top_bar-->
+<ion-content class="has-header" has-bouncing="true">
+<div class="container">
+<form id="funnelForm" name="funnel" ng-controller="FunnelCtrl">
+	<div class="block padding">
+  		<p>Simulate your online sales funnel and see which returns you can expect from your initial marketing investment.</p>
+	</div>
+	<!-- END text_block_1 -->
+	<div class="section_header"><h2>Traffic Generator</h2></div>
+	<div class="block padding">
+  		<p>Enter the quantity and cost per click of the traffic source you will be feeding your funnel with.</p>
+	</div>
+	<!-- END text_block_2 -->
+	<div id="traffic_generator_controls" class="block padding">
+	  	<div class="clicks control">
+		    <label for="clicks">Clicks</label>
+		    <div class="controls">
+		      <input type="number" min="0" id="f_1" step="1"  placeholder="{{data.totalClicks.value}}" ng-change="change()" ng-model="data.totalClicks.value" ng-keypress="keypressHandler($event, 2)">
+		      <span ng-click="data.totalClicks.value = data.totalClicks.value + 1; change()" class="plus button-icon icon ion-plus"></span>
+		      <span ng-click="data.totalClicks.value = data.totalClicks.value - 1; change()" class="minus button-icon icon ion-minus"></span>
+		    </div>
+	  	</div>
+	  	<div class="cpc control">
+		    <label for="cpc">$CPC</label>
+		    <div class="controls">
+		      <input type="number" min="0" id="f_2" placeholder="{{data.cpc.value}}" ng-change="change()" ng-model="data.cpc.value" step="0.05" ng-keypress="keypressHandler($event, 3)">
+		      <span ng-click="value_change_add(data.cpc.value); change()" class="plus button-icon icon ion-plus"></span>
+		      <span ng-click="value_change_sub(data.cpc.value); change()" class="minus button-icon icon ion-minus"></span>
+		    </div>
+	  	</div>
+	  	<div class="control">
+	    	<label for="total" class="total-buget-label">Total Budget</label>
+			<div id="total-wrap" class="controls">
+				<input type="text" class="disabled-text" value="{{displayMoney(data.adCosts.value, data.adCosts.unit)}}" disabled="disabled"/>
+			</div>
+	    </div>
+	</div>
+	<div class="section_header"><h2>Conversion Funnel</h2></div>
+	<div class="block padding">
+  		<p>Enter the price points and conversion rates for your full funnel below to calculate the return on  your marketing investment.</p>
+	</div>
+
+	<div id="funnel">
+		<img src="img/white_bg.png" class="white_bg" alt=""/>
+		<!-- end visual grid -->
+	
+		<div id="left_side">
+		
+		  <div class="level_1 level">
+		    <div class="left_side">
+		      <div class="param_title">Lead Magnet</div>
+		        <div class="lead_magnet param">
+		          <label for="lead_magnet">%</label>
+		          <div class="controls_with_comment">
+		            <div class="controls">
+		              <input type="number" id="f_3" value="data.squeeze.conversion.value"
+                           placeholder="{{data.squeeze.conversion.value}}" ng-model="data.squeeze.conversion.value"
+                           ng-change="change()" step="1" min="0" max="100" 
+                           ng-keypress="keypressHandler($event, 4)">
+		              <span ng-click="data.squeeze.conversion.value = data.squeeze.conversion.value + 1; change()"
+		              		class="plus button-icon icon ion-plus"></span>
+		              <span ng-click="data.squeeze.conversion.value = data.squeeze.conversion.value - 1; change()" 
+		              		class="minus button-icon icon ion-minus"></span>
+		            </div>
+		            <div class="comment">Conversion Rate</div>
+		          </div>
+		        </div>
+		
+		    </div>
+		  </div>
+		  <div class="level_2 level">
+		    <div class="left_side">
+		      <div class="param_title">Tripwire</div>
+		      <div class="param">
+		        <label for="tripwire_price">$</label>
+		        <div class="controls_with_comment">
+		          <div class="controls">
+		            <input type="number" placeholder="{{data.tripwire.conversion.value}}"
+                           placeholder="{{data.tripwire.price.value}}" ng-model="data.tripwire.price.value"
+                           step="0.05" min="0" ng-change="change()" id="f_4"
+                           ng-keypress="keypressHandler($event, 5)">
+		            <span ng-click="data.tripwire.price.value = data.tripwire.price.value + 1; change()" class="plus button-icon icon ion-plus"></span>
+		            <span ng-click="data.tripwire.price.value = data.tripwire.price.value - 1; change()" class="minus button-icon icon ion-minus"></span>
+		          </div>
+		          <div class="comment">Price</div>
+		        </div>
+		      </div>
+		      <div class="param">
+		        <label for="tripwire_percent">%</label>
+		        <div class="controls_with_comment">
+		          <div class="controls">
+		            <input type="number"  placeholder="{{data.tripwire.conversion.value}}"
+                           placeholder="{{data.tripwire.conversion.value}}" ng-change="change()"
+                           ng-model="data.tripwire.conversion.value" step="1" min="0" max="100" id="f_5"
+                           ng-keypress="keypressHandler($event, 6)" />
+		            <span ng-click="data.tripwire.conversion.value = data.tripwire.conversion.value + 1; change()" class="plus button-icon icon ion-plus"></span>
+		            <span ng-click="data.tripwire.conversion.value = data.tripwire.conversion.value - 1; change()" class="minus button-icon icon ion-minus"></span>
+		          </div>
+		          <div class="comment">Conversion Rate</div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="level_3 level"> 
+		    <div class="left_side">
+		      <div class="param_title">Core Offer</div>
+		      <div class="param">
+		        <label for="core_offer_price">$</label>
+		        <div class="controls_with_comment">
+		          <div class="controls">
+		            <input type="number" placeholder="{{data.coreOffer.price.value}}"
+                           placeholder="{{data.coreOffer.price.value}}" ng-change="change()"
+                           ng-model="data.coreOffer.price.value" min="0" step="1" id="f_6"
+                           ng-keypress="keypressHandler($event, 7)">
+		            <span ng-click="data.coreOffer.price.value = data.coreOffer.price.value + 1; change()" class="plus button-icon icon ion-plus"></span>
+		            <span ng-click="data.coreOffer.price.value = data.coreOffer.price.value - 1; change()" class="minus button-icon icon ion-minus"></span>
+		          </div>
+		          <div class="comment">Price</div>
+		        </div>
+		      </div>
+		      <div class="param">
+		        <label for="core_offer_percent">%</label>
+		        <div class="controls_with_comment">
+		          <div class="controls">
+		            <input type="number" placeholder="{{data.coreOffer.conversion.value}}"
+                           placeholder="{{data.coreOffer.conversion.value}}" ng-change="change()"
+                           ng-model="data.coreOffer.conversion.value" step="1" min="0" max="100" id="f_7"
+                           ng-keypress="keypressHandler($event, 8)">
+		            <span ng-click="data.coreOffer.conversion.value = data.coreOffer.conversion.value + 1; change()" class="plus button-icon icon ion-plus"></span>
+		            <span ng-click="data.coreOffer.conversion.value = data.coreOffer.conversion.value - 1; change()" class="minus button-icon icon ion-minus"></span>
+		          </div>
+		          <div class="comment">Conversion Rate</div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="level_4 level">
+		    <div class="left_side">
+		      <div class="param_title">Profit Maximizer</div>
+		      <div class="param">
+		        <label for="profit_max_price">$</label>
+		        <div class="controls_with_comment">
+		          <div class="controls">
+		           <input type="number" placeholder="{{data.profitMax.price.value}}"
+                           placeholder="{{data.profitMax.price.value}}" ng-change="change()"
+                           ng-model="data.profitMax.price.value" min="0" step="1" id="f_8"
+                           ng-keypress="keypressHandler($event, 9)">
+                        <span ng-click="data.profitMax.price.value = data.profitMax.price.value + 1; change()"
+                              class="plus button-icon icon ion-plus"></span>
+                        <span ng-click="data.profitMax.price.value = data.profitMax.price.value - 1; change()"
+                              class="minus button-icon icon ion-minus"></span>
+		          </div>
+		          <div class="comment">Price</div>
+		        </div>
+		      </div>
+		      <div class="param">
+		        <label for="profit_max_percent">%</label>
+		        <div class="controls_with_comment">
+		          <div class="controls">
+		            <input type="number" placeholder="{{data.profitMax.conversion.value}}"
+                           placeholder="{{data.profitMax.conversion.value}}" ng-change="change()"
+                           ng-model="data.profitMax.conversion.value" step="1" min="0" max="100" id="f_9"
+                           ng-keypress="keypressHandler($event, 10)">
+                        <span ng-click="data.profitMax.conversion.value = data.profitMax.conversion.value + 1; change()"
+                              class="plus button-icon icon ion-plus"></span>
+                        <span ng-click="data.profitMax.conversion.value = data.profitMax.conversion.value - 1; change()"
+                              class="minus button-icon icon ion-minus"></span>
+		          </div>
+		          <div class="comment">Conversion Rate</div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="level_5 level">
+		    <div class="left_side">
+		      <div class="param_title">Slack Adjuster</div>
+		      <div class="param">
+		        <label for="slack_adjuster_price">$</label>
+		        <div class="controls_with_comment">
+		          <div class="controls">
+		            <input type="number" placeholder="{{data.slackAdj.price.value}}"
+                           placeholder="{{data.slackAdj.price.value}}" ng-change="change()"
+                           ng-model="data.slackAdj.price.value" min="0" step="0.05" id="f_10"
+                           ng-keypress="keypressHandler($event, 11)">
+                        <span ng-click="data.slackAdj.price.value = data.slackAdj.price.value + 1; change()"
+                              class="plus button-icon icon ion-plus"></span>
+                        <span ng-click="data.slackAdj.price.value = data.slackAdj.price.value - 1; change()"
+                              class="minus button-icon icon ion-minus"></span>
+		          </div>
+		          <div class="comment">Price</div>
+		        </div>
+		      </div>
+		      <div class="param">
+		        <label for="slack_adjuster_percent">%</label>
+		        <div class="controls_with_comment">
+		          <div class="controls">
+		            <input type="number" placeholder="{{data.slackAdj.conversion.value}}"
+                           placeholder="{{data.slackAdj.conversion.value}}" ng-change="change()"
+                           ng-model="data.slackAdj.conversion.value" step="1" min="0" max="100" id="f_11"
+                           ng-keypress="keypressHandler($event, 1)">
+                        <span ng-click="data.slackAdj.conversion.value = data.slackAdj.conversion.value + 1; change()"
+                              class="plus button-icon icon ion-plus"></span>
+                        <span ng-click="data.slackAdj.conversion.value = data.slackAdj.conversion.value - 1; change()"
+                              class="minus button-icon icon ion-minus"></span>
+		          </div>
+		          <div class="comment">Conversion Rate</div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div><!--right_side-->
+		<div id="right_side">
+		  <div class="funnel_output">
+		    <div class="level_1 level">
+		      <div class="trapezoid">
+		        <img src="img/level_1.png" alt=""/>
+		        <div class="center">
+		
+		          <div class="output_data">
+		            <div class="field">
+		              <div class="label">Leads</div>
+		              <div class="result_field" id="lead_magnet_leads"><span>{{data.squeeze.leads.unit}}{{data.squeeze.leads.value}}</span></div>
+		            </div>
+		            <div class="field">
+		              <div class="label">CPL</div>
+		              <div class="result_field" id="lead_magnet_cpl"><span>{{displayMoney(data.squeeze.cpl.value, data.squeeze.cpl.unit)}}</span></div>
+		            </div>
+		            <div class="marker"></div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		    <div class="level_2 level">
+		      <div class="trapezoid">
+		        <img src="img/level_2.png" alt=""/>
+		        <div class="center">
+		          <div class="output_data">
+		            <div class="field">
+		              <div class="label">Sales</div>
+		              <div class="result_field" id="tripwire_leads"><span>{{data.tripwire.twSales.unit}}{{data.tripwire.twSales.value}}</span></div>
+		            </div>
+		            <div class="field">
+		              <div class="label">CPS</div>
+		              <div class="result_field" id="tripwire_cpl"><span>{{displayMoney(data.tripwire.cptws.value, data.tripwire.cptws.unit)}}</span></div>
+		            </div>
+		            <div class="marker"></div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		    <div class="level_3 level">
+		      <div class="trapezoid">
+		        <img src="img/level_3.png" alt=""/>
+		        <div class="center">
+		          <div class="output_data">
+		            <div class="field">
+		              <div class="label">Sales</div>
+		              <div class="result_field" id="core_offer_leads"><span>{{data.coreOffer.coSales.unit}}{{data.coreOffer.coSales.value}}</span></div>
+		            </div>
+		            <div class="field">
+		              <div class="label">CPS</div>
+		              <div class="result_field" id="core_offer_cpl"><span>{{displayMoney(data.coreOffer.cpcos.value, data.coreOffer.cpcos.unit)}}</span></div>
+		            </div>
+		            <div class="marker"></div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		    <div class="level_4 level">
+		      <div class="trapezoid">
+		        <img src="img/level_4.png" alt=""/>
+		        <div class="center">
+		          <div class="output_data">
+		            <div class="field">
+		              <div class="label">Sales</div>
+		              <div class="result_field" id="profit_max_leads"><span>{{data.profitMax.pmSales.unit}}{{data.profitMax.pmSales.value}}</span></div>
+		            </div>
+		            <div class="marker"></div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		    <div class="level_5 level">
+		      <div class="trapezoid">
+		        <img src="img/level_5.png" alt=""/>
+		        <div class="center">
+		          <div class="output_data">
+		            <div class="field">
+		              <div class="label">Sales</div>
+		              <div class="result_field" id="slack_adjuster_leads"><span>{{data.slackAdj.saSales.unit}}{{data.slackAdj.saSales.value}}</span></div>
+		            </div>
+		            <div class="marker"></div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div><!--right_side-->
+	</div>
+	<div class="section_header"><h2>Return on Investment</h2></div>
+	<div class="block padding">
+	  <p>Here are the overall results thy you can expect of your sales funnel:</p>
+	  <div class="results">
+	    <div class="result_field calm-border">
+	      <div class="title">Profit</div>
+	      <div class="value"><span>{{displayMoney(data.profitLoss.value, data.profitLoss.unit)}}</span></div>
+	    </div>
+	    <div class="result_field royal-border">
+	      <div class="title">Revenue</div>
+	      <div class="value"><span>{{displayMoney(data.revenue.value, data.revenue.unit)}}</span></div>
+	    </div>
+	    <div class="result_field positive-border">
+	      <div class="title">EPC</div>
+	      <div class="value"><span>{{displayMoney(data.epc.value, data.epc.unit)}}</span></div>
+	    </div>
+	  </div>
+	  </div>
+</form>
+</div>
+</ion-content>
+</ion-view>

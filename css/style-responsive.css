@@ -1,0 +1,350 @@
+@media (max-width: 1200px){
+    .container{
+        width: 100%;
+    }
+    #top_bar .top_inner{
+        width: 100%;
+    }
+}
+@media (max-width: 1024px){
+	.control {
+		margin-right:20px;
+	}
+	.control.cpc {
+		margin-right: 30px;
+	}
+	#total-wrap input {
+		width:200px;
+	}
+}
+@media (max-width: 880px){
+    #right_side{
+        width: 37%;
+    }
+    #left_side .param{
+    width: 38.5%;
+    margin-right: 2.8%;
+    }
+    #left_side .param label{
+        width: 7.8%;
+        min-width: 15px;
+    }
+    #left_side .controls_with_comment{
+    width: 90%;
+    }
+}
+@media all and (orientation: landscape) and (min-width: 400px) and (max-width: 640px) {
+    
+    .custom-button-style {
+        width: 230px;
+        font-size: 15pt;
+        font-weight: bold;
+    }
+
+    .final-result {
+        width: 110px;
+        height: 110px;
+
+        font-size: 18px;
+
+    }
+
+    .final-result .label {
+        margin-top: 32px;
+    }
+}
+@media all and (min-width: 790px) {
+
+    .custom-button-style {
+        width: 250px;
+        font-size: 20pt;
+        font-weight: bold;
+    }
+}
+@media (max-width: 768px){
+	
+	.results .result_field {
+		width: 218px;
+	}
+	.block{
+        text-align: center;
+    }
+	.button_wrap {
+	  margin: 0 auto 38px;
+	  width: 34%;
+	}
+	.button_wrap input{
+        display: inline-block;
+    }
+	.control {
+        float: none;
+        margin:  0 auto 20px;
+        width: 372px;
+    }
+    #total-wrap, .control.cpc{
+        margin:  0 auto 20px;
+    }
+	.control label {
+		width: 100px;
+	}
+	#total-wrap input {
+		width:272px;
+	}
+	#logo{
+        margin: 0 auto;
+    }
+	
+}
+@media (max-width: 730px){
+    .level_3 .output_data{
+        padding-top: 6px;
+    }
+    .level_3 .output_data  .result_field{
+        clear: both;
+    }
+}
+@media (max-width: 710px){
+    .results .result_field{
+        width: 31.66666666666667%;
+        margin-right: 2.25%;
+        padding: 10px 5px;
+    }
+}
+@media (max-width: 684px){
+    .level_3 .output_data{
+        padding-top: 5px;
+    }
+    #right_side .level_5 .output_data{
+        margin-left: 17px;
+    }
+    #right_side .level_5 .marker{
+        left: -58px;
+        z-index: -1;
+    }
+	#funnel img.white_bg {
+	  width: 71.75%;
+	}
+}
+@media (max-width: 651px) {
+
+
+    .custom-button-style {
+        width: 230px;
+        font-size: 15pt;
+        font-weight: bold;
+    }
+	#funnel img.white_bg {
+		width: 74.75%;
+	}
+	.marker {
+		width: 40px;
+		left: -50px;
+	}
+	.level .left_side {
+		padding: 10px 0 10px 10px;
+	}
+	
+	#right_side .level_5 .marker {
+		left: -48px;
+	}
+}
+
+
+@media (max-width: 620px){
+    #logo{
+        margin: 0 auto;
+    }
+    .block{
+        text-align: center;
+    }
+    #right_side{
+        width: 32%;
+    }
+    #right_side img{
+        z-index: -1;
+    }
+    #left_side{
+        background: #fff;
+    }
+    /*--------------  Levels   ----------------*/
+    #right_side .level_1  { background: #294610;}
+    #right_side .level_2  { background: #3c5e21;}
+    #right_side .level_3  { background: #6e9b3f;}
+    #right_side .level_4  { background: #6e9b3f;}
+    #right_side .level_5  { background: #8fc350;}
+
+    #right_side .level .center{
+        padding: 0 7.6%;
+    }
+    #right_side .center .output_data{
+        padding-top: 6px;
+    }
+    #right_side .level_4 .output_data,
+    #right_side .level_5 .output_data{
+        padding-top: 36px;
+    }
+    .marker{
+        left: -53px;
+        width: 46px;
+		display: none;
+    }
+    .funnel_output .result_field{
+        clear: both;
+    }
+    .button_wrap {
+        width:42%;
+    }
+	.button-icon {
+		width:42px;
+	}
+	.button-icon.plus{
+		right: 42px;
+	}
+	.control label {
+		width:100px;
+	}
+	#total-wrap input {
+		width:240px;
+	}
+}
+@media (max-width: 600px){
+    #left_side .param {
+        margin-right: 2.8%;
+        width: 34.5%;
+    }
+    .control {
+        float: none;
+        margin:  0 auto 20px;
+        width: 325px;
+    }
+    #total-wrap, .control.cpc{
+        margin:  0 auto 20px;
+    }
+	#total-wrap input {
+		width:222px;
+	}
+}
+@media (max-width: 580px){
+
+}
+@media (max-width: 540px){
+    #left_side .param{
+        float: none;
+        width: 37.5%;
+    }
+    #left_side .controls_with_comment {
+        width: 90%;
+    }
+    #left_side .level{
+        overflow: hidden;
+        height: 174px;
+    }
+    #right_side_side .level,
+    #funnel .level, #funnel .center {
+        height: 174px;
+    }
+    #right_side .center .output_data{
+        padding-top: 33px;
+    }
+    #right_side .level_4 .output_data,
+    #right_side .level_5 .output_data
+    {
+        padding-top: 64px;
+    }
+    #right_side .level_4 .marker,
+    #right_side .level_5 .marker
+    {
+        top: 74px;
+    }
+    .marker{
+        top: 78px;
+    }
+    .results .result_field{
+        width: 350px;
+        margin: 0 auto 20px;
+        padding: 10px 5px;
+        float: none;
+        clear: both;
+    }
+    .results .result_field:last-child {
+        margin-right: auto;
+    }
+}
+@media (max-width: 480px){
+	#right_side{
+        width: 38%;
+    }
+	.results .result_field{
+        width: 300px;
+	}
+	.control label {
+		width: 100px;
+	}
+	.control input {
+		width:165px;
+	}
+	.custom-button-style {
+        width: 230px;
+        font-size: 15pt;
+        font-weight: bold;
+    }
+	.button_wrap {
+		width: 55%;
+	}
+	.level .left_side {
+		padding: 11px 0 11px 15px;
+	}
+}
+@media (max-width: 380px){
+.control {
+        float: none;
+        margin:  0 auto 20px 0;
+        width: 280px;
+    }
+    #total-wrap, .control.cpc{
+        margin:  0 auto 20px 0;
+    }
+	#total-wrap input {
+		width:180px;
+	}
+	.results .result_field {
+		width:250px;
+	}
+	.button_wrap {
+		width:84%;
+	}
+	.padding {
+		padding: 0 15px;
+	}
+	.level .left_side {
+		padding: 10px 0 10px 8px;
+	}
+}
+@media (max-width: 320px){
+    .marker {
+        left: -44px;
+        width: 35px;
+    }
+	.results .result_field{
+        width: 240px;
+	}
+	.control input {
+		width:150px;
+	}
+	.custom-button-style {
+        width: 230px;
+        font-size: 15pt;
+        font-weight: bold;
+    }
+	.popup-container.active {
+        width: 90%;
+        margin: 0 auto;
+        height: auto;
+    }
+	.results .result_field {
+		width:260px;
+	}
+	.button_wrap {
+		width: 80%;
+	}
+}

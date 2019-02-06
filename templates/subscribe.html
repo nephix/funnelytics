@@ -1,0 +1,31 @@
+<div ng-controller="formController">
+    <form ng-submit="processForm()" ng-hide="formPopup" name="myForm" novalidate id="sign-up-form">
+        <h2 class="popup-title ng-binding">Subscribe and Unlock ROI Section</h2>
+        <span class="error">{{errMsg}}</span>
+        <span ng-click="closePopup()" class="cross-btn">&times;</span>
+
+        <div class="list">
+            <label class="item item-input">
+                <input type="text" placeholder="Name" name="user" ng-model="formData.name" required>
+                <i class="icon ion-android-person icon-custom-style"></i>
+            </label>
+            <label class="item item-input">
+                <input type="email" placeholder="Email" name="email" ng-model="formData.email" required>
+                <i class="icon ion-locked icon-custom-style"></i>
+            </label>
+        </div>
+        <div class="privacy"><i class="fa fa-shield"></i>We hate spam as much as anyone else. Your e-mail address is save with us.</div>
+        <button class="button button-block button-assertive" type="submit" style="font-size: 1.5em; font-weight: bold;">
+            Unlock ROI
+        </button>
+    </form>
+    <div ng-show="statusMessage" class="sign-up-status">
+        <h2 ng-show="almostDone" class="heading">Almost Done</h2>
+        <i ng-show="userSucSub" class="icon ion-checkmark"></i>
+        <h3 ng-class="userSucSub ? 'popup-message-with-img' : 'popup-message'">{{statusMessage}}</h3>
+        <span ng-click="closePopup()" class="cross-btn">&times;</span>
+        <button class="button button-block button-light" ng-click="closePopup()"
+                style="font-size: 1.5em; font-weight: bold;">{{statusButtonText}}
+        </button>
+    </div>
+</div>
